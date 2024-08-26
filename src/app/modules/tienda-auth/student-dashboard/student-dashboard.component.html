@@ -1,0 +1,788 @@
+<!-- End Side Vav -->
+<a class="close_side_menu" href="javascript:void(0);"></a>
+<div class="rbt-page-banner-wrapper">
+    <!-- Start Banner BG Image  -->
+    <div class="rbt-banner-image"></div>
+    <!-- End Banner BG Image  -->
+</div>
+<!-- Start Card Style -->
+<div class="rbt-dashboard-area rbt-section-overlayping-top rbt-section-gapBottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <!-- Start Dashboard Top  -->
+                <div class="rbt-dashboard-content-wrapper">
+                    <div class="tutor-bg-photo bg_image bg_image--23 height-350"></div>
+                    <!-- Start Tutor Information  -->
+                    <div class="rbt-tutor-information">
+                        <div class="rbt-tutor-information-left">
+                            <div class="thumbnail rbt-avatars size-lg">
+                                <img [src]="avatar_previzualiza" alt="Instructor">
+                            </div>
+                            <div class="tutor-content" *ngIf="profile_student">
+                                <h5 class="title">{{ profile_student.name + ' '+profile_student.surname }}</h5>
+                                <ul class="rbt-meta rbt-meta-white mt--5">
+                                    <li><i class="feather-book"></i>{{ enrolled_course_count }} Courses Enroled</li>
+                                    <li><i class="feather-award"></i>4 Certificate</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="rbt-tutor-information-right">
+                            <div class="tutor-btn">
+                                <a class="rbt-btn btn-md hover-icon-reverse" href="#">
+                                    <span class="icon-reverse-wrapper">
+                    <span class="btn-text">Become an Instructor</span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Tutor Information  -->
+                </div>
+                <!-- End Dashboard Top  -->
+
+                <div class="row g-5">
+                    <div class="col-lg-3">
+                        <!-- Start Dashboard Sidebar  -->
+                        <div class="rbt-default-sidebar sticky-top rbt-shadow-box rbt-gradient-border">
+                            <div class="inner">
+                                <div class="content-item-content">
+
+                                    <div class="rbt-default-sidebar-wrapper">
+                                        <div class="section-title mb--20">
+                                            <h6 class="rbt-title-style-2">Welcome, Jone Due</h6>
+                                        </div>
+                                        <nav class="mainmenu-nav">
+                                            <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                <li><a href="#" onclick="return false;" [ngClass]="{'active': nav_option == 1}" (click)="navOption(1)"><i class="feather-home"></i><span>Dashboard</span></a></li>
+                                                <li><a href="#" onclick="return false;" [ngClass]="{'active': nav_option == 2}" (click)="navOption(2)"><i class="feather-user"></i><span>My Profile</span></a></li>
+                                                <li><a href="#" onclick="return false;" [ngClass]="{'active': nav_option == 3}" (click)="navOption(3)"><i class="feather-book-open"></i><span>Enrolled Courses</span></a></li>
+                                                <!-- <li><a href="student-wishlist.html"><i class="feather-bookmark"></i><span>Wishlist</span></a></li> -->
+                                                <li><a href="#" onclick="return false;" [ngClass]="{'active': nav_option == 4}" (click)="navOption(4)"><i class="feather-star"></i><span>Reviews</span></a></li>
+                                                <!-- <li><a href="student-my-quiz-attempts.html"><i class="feather-help-circle"></i><span>My Quiz Attempts</span></a></li> -->
+                                                <li><a href="#" onclick="return false;" [ngClass]="{'active': nav_option == 5}" (click)="navOption(5)"><i class="feather-shopping-bag"></i><span>Order History</span></a></li>
+                                            </ul>
+                                        </nav>
+
+                                        <div class="section-title mt--40 mb--20">
+                                            <h6 class="rbt-title-style-2">User</h6>
+                                        </div>
+
+                                        <nav class="mainmenu-nav">
+                                            <ul class="dashboard-mainmenu rbt-default-sidebar-list">
+                                                <li><a href="#" onclick="return false;" [ngClass]="{'active': nav_option == 6}" (click)="navOption(6)"><i class="feather-settings"></i><span>Settings</span></a></li>
+                                                <li><a href="#" onclick="return false;" (click)="logout()"><i class="feather-log-out"></i><span>Logout</span></a></li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Dashboard Sidebar  -->
+                    </div>
+
+                    <div class="col-lg-9">
+                        <div class="rbt-dashboard-content bg-color-white rbt-shadow-box mb--60" *ngIf="nav_option == 1">
+                            <div class="content">
+                                <div class="section-title">
+                                    <h4 class="rbt-title-style-3">Dashboard</h4>
+                                </div>
+                                <div class="row g-5">
+
+                                    <!-- Start Single Card  -->
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                        <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-primary-opacity">
+                                            <div class="inner">
+                                                <div class="rbt-round-icon bg-primary-opacity">
+                                                    <i class="feather-book-open"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <h3 class="counter without-icon color-primary"><span class="odometer" data-count="30">{{ enrolled_course_count }}</span>
+                                                    </h3>
+                                                    <span class="rbt-title-style-2 d-block">Enrolled Courses</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Card  -->
+
+                                    <!-- Start Single Card  -->
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                        <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-secondary-opacity">
+                                            <div class="inner">
+                                                <div class="rbt-round-icon bg-secondary-opacity">
+                                                    <i class="feather-monitor"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <h3 class="counter without-icon color-secondary"><span class="odometer" data-count="10">{{ actived_course_count }}</span>
+                                                    </h3>
+                                                    <span class="rbt-title-style-2 d-block">ACTIVE COURSES</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End Single Card  -->
+
+                                    <!-- Start Single Card  -->
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                        <div class="rbt-counterup variation-01 rbt-hover-03 rbt-border-dashed bg-violet-opacity">
+                                            <div class="inner">
+                                                <div class="rbt-round-icon bg-violet-opacity">
+                                                    <i class="feather-award"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <h3 class="counter without-icon color-violet"><span class="odometer" data-count="7">{{ termined_course_count }}</span>
+                                                    </h3>
+                                                    <span class="rbt-title-style-2 d-block">Completed Courses</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Single Card  -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rbt-dashboard-content bg-color-white rbt-shadow-box" *ngIf="nav_option == 2">
+                            <div class="content">
+                                <div class="section-title">
+                                    <h4 class="rbt-title-style-3">My Profile</h4>
+                                </div>
+                                <!-- Start Profile Row  -->
+                                <div class="rbt-profile-row row row--15">
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="rbt-profile-content b2">Birthday Date</div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="rbt-profile-content b2">{{ profile_student.birthday }}</div>
+                                    </div>
+                                </div>
+                                <!-- End Profile Row  -->
+
+                                <!-- Start Profile Row  -->
+                                <div class="rbt-profile-row row row--15 mt--15">
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="rbt-profile-content b2">First Name</div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="rbt-profile-content b2">{{ profile_student.name }}</div>
+                                    </div>
+                                </div>
+                                <!-- End Profile Row  -->
+
+                                <!-- Start Profile Row  -->
+                                <div class="rbt-profile-row row row--15 mt--15">
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="rbt-profile-content b2">Last Name</div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="rbt-profile-content b2">{{ profile_student.surname }}</div>
+                                    </div>
+                                </div>
+                                <!-- End Profile Row  -->
+
+                                <!-- Start Profile Row  -->
+                                <div class="rbt-profile-row row row--15 mt--15">
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="rbt-profile-content b2">Email</div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="rbt-profile-content b2">{{ profile_student.email }}</div>
+                                    </div>
+                                </div>
+                                <!-- End Profile Row  -->
+
+                                <!-- Start Profile Row  -->
+                                <div class="rbt-profile-row row row--15 mt--15">
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="rbt-profile-content b2">Phone Number</div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="rbt-profile-content b2">{{ profile_student.phone }}</div>
+                                    </div>
+                                </div>
+                                <!-- End Profile Row  -->
+
+                                <!-- Start Profile Row  -->
+                                <div class="rbt-profile-row row row--15 mt--15">
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="rbt-profile-content b2">Skill/Occupation</div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="rbt-profile-content b2">{{ profile_student.profession }}</div>
+                                    </div>
+                                </div>
+                                <!-- End Profile Row  -->
+
+                                <!-- Start Profile Row  -->
+                                <div class="rbt-profile-row row row--15 mt--15">
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="rbt-profile-content b2">Biography</div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="rbt-profile-content b2">{{ profile_student.description }}</div>
+                                    </div>
+                                </div>
+                                <!-- End Profile Row  -->
+                            </div>
+                        </div>
+                        <div class="rbt-dashboard-content bg-color-white rbt-shadow-box" *ngIf="nav_option == 3">
+                            <div class="content">
+
+                                <div class="section-title">
+                                    <h4 class="rbt-title-style-3">Enrolled Courses</h4>
+                                </div>
+
+                                <div class="advance-tab-button mb--30">
+                                    <ul class="nav nav-tabs tab-button-style-2 justify-content-start" id="myTab-4" role="tablist">
+                                        <li role="presentation">
+                                            <a href="#" class="tab-button active" id="home-tab-4" data-bs-toggle="tab" data-bs-target="#home-4" role="tab" aria-controls="home-4" aria-selected="true">
+                                                <span class="title">Enrolled Courses</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#" class="tab-button" id="profile-tab-4" data-bs-toggle="tab" data-bs-target="#profile-4" role="tab" aria-controls="profile-4" aria-selected="false">
+                                                <span class="title">Active Courses</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#" class="tab-button" id="contact-tab-4" data-bs-toggle="tab" data-bs-target="#contact-4" role="tab" aria-controls="contact-4" aria-selected="false">
+                                                <span class="title">Completed Courses</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="home-4" role="tabpanel" aria-labelledby="home-tab-4">
+                                        <div class="row g-5">
+                                            <!-- Start Single Course  -->
+                                            <ng-container *ngFor="let enrolled_course of enrolled_course_news">
+                                                <div class="col-lg-4 col-md-6 col-12">
+                                                    <div class="rbt-card variation-01 rbt-hover">
+                                                        <div class="rbt-card-img">
+                                                            <a [routerLink]="['landing-curso/',enrolled_course.course.slug]">
+                                                                <img [src]="enrolled_course.course.imagen" alt="Card image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="rbt-card-body">
+                                                            <div class="rbt-card-top">
+                                                                <div class="rbt-review">
+                                                                    <div class="rating">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                    <span class="rating-count"> (15 Reviews)</span>
+                                                                </div>
+                                                                <div class="rbt-bookmark-btn">
+                                                                    <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="rbt-card-title"><a [routerLink]="['landing-curso/',enrolled_course.course.slug]">{{ enrolled_course.course.title }}</a>
+                                                            </h4>
+                                                            <ul class="rbt-meta">
+                                                                <li><i class="feather-book"></i>{{ enrolled_course.course.n_clases }} Lessons</li>
+                                                                <li><i class="feather-users"></i>40 Students</li>
+                                                            </ul>
+    
+                                                            <div class="rbt-progress-style-1 mb--20 mt--10">
+                                                                <div class="single-progress">
+                                                                    <h6 class="rbt-title-style-2 mb--10">Complete</h6>
+                                                                    <div class="progress">
+                                                                        <!-- style="width: 90%"  -->
+                                                                        <div class="progress-bar wow fadeInLeft bar-color-success" data-wow-duration="0.5s" 
+                                                                        data-wow-delay=".3s" role="progressbar" 
+                                                                        [ngStyle]="{'width': enrolled_course.percentage+'%'}"
+                                                                        [attr.aria-valuenow]="enrolled_course.percentage" aria-valuemin="0" aria-valuemax="100">
+                                                                        </div>
+                                                                        <span class="rbt-title-style-2 progress-number">{{ enrolled_course.percentage }}%</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-card-bottom">
+                                                                <a class="rbt-btn btn-sm bg-primary-opacity w-100 text-center" [href]="'/ver-curso/'+enrolled_course.course.slug">Ir al Curso</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                            
+                                            <!-- End Single Course  -->
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="profile-4" role="tabpanel" aria-labelledby="profile-tab-4">
+                                        <div class="row g-5">
+
+                                            <ng-container *ngFor="let actived_course_new of actived_course_news">
+                                                <div class="col-lg-4 col-md-6 col-12">
+                                                    <div class="rbt-card variation-01 rbt-hover">
+                                                        <div class="rbt-card-img">
+                                                            <a [routerLink]="['landing-curso/',actived_course_new.course.slug]">
+                                                                <img [src]="actived_course_new.course.imagen" alt="Card image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="rbt-card-body">
+                                                            <div class="rbt-card-top">
+                                                                <div class="rbt-review">
+                                                                    <div class="rating">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                    <span class="rating-count"> (15 Reviews)</span>
+                                                                </div>
+                                                                <div class="rbt-bookmark-btn">
+                                                                    <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="rbt-card-title"><a [routerLink]="['landing-curso/',actived_course_new.course.slug]">{{ actived_course_new.course.title }}</a>
+                                                            </h4>
+                                                            <ul class="rbt-meta">
+                                                                <li><i class="feather-book"></i>{{ actived_course_new.course.n_clases }} Lessons</li>
+                                                                <li><i class="feather-users"></i>40 Students</li>
+                                                            </ul>
+    
+                                                            <div class="rbt-progress-style-1 mb--20 mt--10">
+                                                                <div class="single-progress">
+                                                                    <h6 class="rbt-title-style-2 mb--10">Complete</h6>
+                                                                    <div class="progress">
+                                                                        <!-- style="width: 90%"  -->
+                                                                        <div class="progress-bar wow fadeInLeft bar-color-success" data-wow-duration="0.5s" 
+                                                                        data-wow-delay=".3s" role="progressbar" 
+                                                                        [ngStyle]="{'width': actived_course_new.percentage+'%'}"
+                                                                        [attr.aria-valuenow]="actived_course_new.percentage" aria-valuemin="0" aria-valuemax="100">
+                                                                        </div>
+                                                                        <span class="rbt-title-style-2 progress-number">{{ actived_course_new.percentage }}%</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-card-bottom">
+                                                                <a class="rbt-btn btn-sm bg-primary-opacity w-100 text-center" [href]="'/ver-curso/'+actived_course_new.course.slug">Ir al Curso</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="contact-4" role="tabpanel" aria-labelledby="contact-tab-4">
+                                        <div class="row g-5">
+                                            <ng-container *ngFor="let termined_course_new of termined_course_news">
+                                                <div class="col-lg-4 col-md-6 col-12">
+                                                    <div class="rbt-card variation-01 rbt-hover">
+                                                        <div class="rbt-card-img">
+                                                            <a [routerLink]="['landing-curso/',termined_course_new.course.slug]">
+                                                                <img [src]="termined_course_new.course.imagen" alt="Card image">
+                                                            </a>
+                                                        </div>
+                                                        <div class="rbt-card-body">
+                                                            <div class="rbt-card-top">
+                                                                <div class="rbt-review">
+                                                                    <div class="rating">
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                        <i class="fas fa-star"></i>
+                                                                    </div>
+                                                                    <span class="rating-count"> (15 Reviews)</span>
+                                                                </div>
+                                                                <div class="rbt-bookmark-btn">
+                                                                    <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="rbt-card-title"><a [routerLink]="['landing-curso/',termined_course_new.course.slug]">{{ termined_course_new.course.title }}</a>
+                                                            </h4>
+                                                            <ul class="rbt-meta">
+                                                                <li><i class="feather-book"></i>{{ termined_course_new.course.n_clases }} Lessons</li>
+                                                                <li><i class="feather-users"></i>40 Students</li>
+                                                            </ul>
+    
+                                                            <div class="rbt-progress-style-1 mb--20 mt--10">
+                                                                <div class="single-progress">
+                                                                    <h6 class="rbt-title-style-2 mb--10">Complete</h6>
+                                                                    <div class="progress">
+                                                                        <!-- style="width: 90%"  -->
+                                                                        <div class="progress-bar wow fadeInLeft bar-color-success" data-wow-duration="0.5s" 
+                                                                        data-wow-delay=".3s" role="progressbar" 
+                                                                        [ngStyle]="{'width': 100+'%'}"
+                                                                        [attr.aria-valuenow]="100" aria-valuemin="0" aria-valuemax="100">
+                                                                        </div>
+                                                                        <span class="rbt-title-style-2 progress-number">{{ 100 }}%</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rbt-card-bottom">
+                                                                <a class="rbt-btn btn-sm bg-primary-opacity w-100 text-center" [href]="'/ver-curso/'+termined_course_new.course.slug">Ir al Curso</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="rbt-dashboard-content bg-color-white rbt-shadow-box" *ngIf="nav_option == 4">
+                            <div class="content">
+                                <div class="section-title">
+                                    <h4 class="rbt-title-style-3">Reviews</h4>
+                                </div>
+
+                                <div class="rbt-dashboard-table table-responsive mobile-table-750" *ngIf="!sale_detail_selected">
+                                    <table class="rbt-table table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th>Course</th>
+                                                <th>Feedback</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ng-container *ngFor="let sales_detail of sales_details">
+                                                <tr>
+                                                    <th>
+                                                        <span class="b3"><a href="#">{{ sales_detail.course.title }}</a></span>
+                                                    </th>
+                                                    <td>
+                                                        <div class="rbt-review" *ngIf="sales_detail.review">
+                                                            <div class="rating">
+                                                                <i class="fas fa-star" [ngClass]="{'rating': sales_detail.review.rating < 1}"></i>
+                                                                <i class="fas fa-star" [ngClass]="{'rating': sales_detail.review.rating < 2}"></i>
+                                                                <i class="fas fa-star" [ngClass]="{'rating': sales_detail.review.rating < 3}"></i>
+                                                                <i class="fas fa-star" [ngClass]="{'rating': sales_detail.review.rating < 4}"></i>
+                                                                <i class="fas fa-star" [ngClass]="{'rating': sales_detail.review.rating < 5}"></i>
+                                                            </div>
+                                                            <span class="rating-count"> ({{ sales_detail.review.rating }} Rating)</span>
+                                                        </div>
+                                                        <p class="b2" *ngIf="!sales_detail.review">SIN RESEÑA</p>
+                                                    </td>
+                                                    <td>
+                                                        <div class="rbt-button-group justify-content-end">
+                                                            <a class="rbt-btn btn-xs bg-primary-opacity radius-round" href="#" title="Edit" onclick="return false;" (click)="showReview(sales_detail)"><i class="feather-edit pl--0"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                            
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <div class="rbt-dashboard-table table-responsive mobile-table-750" *ngIf="sale_detail_selected">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <!-- el numero de estrellas al seleccionar -->
+                                            <div class="rbt-review">
+                                                <div class="">
+                                                    <i class="fas fa-star mx-2" [ngClass]="{'color-warning': rating >= 1}" 
+                                                    (click)="selectedRating(1)"
+                                                    style="font-size: xxx-large;cursor: pointer;"
+                                                    ></i>
+                                                    <i class="fas fa-star mx-2" [ngClass]="{'color-warning': rating >= 2}" 
+                                                    (click)="selectedRating(2)"
+                                                    style="font-size: xxx-large;cursor: pointer;"
+                                                    ></i>
+                                                    <i class="fas fa-star mx-2" [ngClass]="{'color-warning': rating >= 3}" 
+                                                    (click)="selectedRating(3)"
+                                                    style="font-size: xxx-large;cursor: pointer;"
+                                                    ></i>
+                                                    <i class="fas fa-star mx-2" [ngClass]="{'color-warning': rating >= 4}" 
+                                                    (click)="selectedRating(4)"
+                                                    style="font-size: xxx-large;cursor: pointer;"
+                                                    ></i>
+                                                    <i class="fas fa-star mx-2" [ngClass]="{'color-warning': rating >= 5}" 
+                                                    (click)="selectedRating(5)"
+                                                    style="font-size: xxx-large;cursor: pointer;"
+                                                    ></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 py-2">
+                                            <div class="rbt-form-group">
+                                                <label for="bio">Description: </label>
+                                                <textarea id="bio" cols="20" rows="5" name="description_review" [(ngModel)]="description_review"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-flex">
+                                            <div class="rbt-form-group">
+                                                <a class="rbt-btn btn-dark btn-md" href="#" onclick="return false;" (click)="back()">Regresar</a>
+                                            </div>
+                                            <div class="rbt-form-group mx-2" *ngIf="!sale_detail_selected.review">
+                                                <a class="rbt-btn btn-gradient btn-md" href="#" onclick="return false;" (click)="saveReview()">Registrar reseña</a>
+                                            </div>
+                                            <div class="rbt-form-group mx-2" *ngIf="sale_detail_selected.review">
+                                                <a class="rbt-btn btn-gradient" href="#" onclick="return false;" (click)="updateReview()">Update Review</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rbt-dashboard-content bg-color-white rbt-shadow-box" *ngIf="nav_option == 5">
+                            <div class="content">
+                                <div class="section-title">
+                                    <h4 class="rbt-title-style-3">Order History</h4>
+                                </div>
+
+                                <div class="rbt-dashboard-table table-responsive mobile-table-750">
+                                    <table class="rbt-table table table-borderless">
+                                        <thead>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Method Payment</th>
+                                                <th>Date</th>
+                                                <th>Total</th>
+                                                <th>Detail</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <ng-container *ngFor="let sale of sales">
+                                                <tr>
+                                                    <td>#{{ sale._id }}</td>
+                                                    <td>{{ sale.method_payment }}</td>
+                                                    <td>{{ sale.created_at }}</td>
+                                                    <td>{{ sale.total }} USD</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-danger" (click)="showDetails(sale)"> + </button>
+                                                    </td>
+                                                </tr>
+                                                <ng-container *ngIf="sale.is_detail">
+                                                    <ng-container *ngFor="let sale_detail of sale.sales_details">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td>
+                                                                <img [src]="sale_detail.course.imagen" style="width: 100px;object-fit: contain;" alt="">
+                                                            </td>
+                                                            <td>
+                                                                {{ sale_detail.course.title }}
+                                                            </td>
+                                                            <td>{{ sale_detail.total }} USD</td>
+                                                            <td>
+                                                                {{ sale_detail.course.categorie.title }}
+                                                            </td>
+                                                        </tr>
+                                                    </ng-container>
+                                                    
+                                                </ng-container>
+                                                
+                                            </ng-container>
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="rbt-dashboard-content bg-color-white rbt-shadow-box" *ngIf="nav_option == 6">
+                            <div class="content">
+
+                                <div class="section-title">
+                                    <h4 class="rbt-title-style-3">Settings</h4>
+                                </div>
+
+                                <div class="advance-tab-button mb--30">
+                                    <ul class="nav nav-tabs tab-button-style-2 justify-content-start" id="settinsTab-4" role="tablist">
+                                        <li role="presentation">
+                                            <a href="#" class="tab-button active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="true">
+                                                <span class="title">Profile</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#" class="tab-button" id="password-tab" data-bs-toggle="tab" data-bs-target="#password" role="tab" aria-controls="password" aria-selected="false">
+                                                <span class="title">Password</span>
+                                            </a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#" class="tab-button" id="social-tab" data-bs-toggle="tab" data-bs-target="#social" role="tab" aria-controls="social" aria-selected="false">
+                                                <span class="title">Social Share</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="rbt-dashboard-content-wrapper">
+                                            <div class="tutor-bg-photo bg_image bg_image--23 height-245"></div>
+                                            <!-- Start Tutor Information  -->
+                                            <div class="rbt-tutor-information">
+                                                <div class="rbt-tutor-information-left">
+                                                    <div class="thumbnail rbt-avatars size-lg position-relative">
+                                                        <img [src]="avatar_previzualiza" alt="Instructor">
+                                                        <div class="rbt-edit-photo-inner">
+                                                            <button class="rbt-edit-photo" title="Upload Photo">
+                                                                <i class="feather-camera"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="rbt-tutor-information-right">
+                                                    <div class="tutor-btn">
+                                                        <a class="rbt-btn btn-sm btn-border color-white radius-round-10" href="#">Edit Cover Photo</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- End Tutor Information  -->
+                                        </div>
+                                        <!-- Start Profile Row  -->
+                                        <form action="#" class="rbt-profile-row rbt-default-form row row--15">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="firstname">First Name</label>
+                                                    <input id="firstname" type="text" name="name" [(ngModel)]="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="lastname">Last Name</label>
+                                                    <input id="lastname" type="text" name="surname" [(ngModel)]="surname">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="username">Email</label>
+                                                    <input id="username" type="email" name="email" [(ngModel)]="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="phonenumber">Phone Number</label>
+                                                    <input id="phonenumber" type="tel" name="phone" [(ngModel)]="phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="birthday">Birthday</label>
+                                                    <input id="birthday" type="date" name="birthday" [(ngModel)]="birthday">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="skill">Skill/Occupation</label>
+                                                    <input id="skill" type="text" name="profession" [(ngModel)]="profession">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <!-- input file -->
+                                                <label class="form-label">Sube tu imagen: *</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="customFile"  accept=".jpeg, .bmp, .jpg, .png, .gif, .webp"  (change)="processFile($event)">
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                <!-- input date -->
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="bio">Description</label>
+                                                    <textarea id="bio" cols="20" rows="5" name="description" [(ngModel)]="description"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt--20">
+                                                <div class="rbt-form-group">
+                                                    <a class="rbt-btn btn-gradient" href="#" onclick="return false;" (click)="updatedStudent()">Update Info</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- End Profile Row  -->
+                                    </div>
+
+                                    <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+                                        <!-- Start Profile Row  -->
+                                        <form action="#" class="rbt-profile-row rbt-default-form row row--15">
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="newpassword">New Password</label>
+                                                    <input id="newpassword" type="password" name="password" [(ngModel)]="password" placeholder="New Password">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="retypenewpassword">Re-type New Password</label>
+                                                    <input id="retypenewpassword" type="password" name="password_confirmation" [(ngModel)]="password_confirmation" placeholder="Re-type New Password">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt--10">
+                                                <div class="rbt-form-group">
+                                                    <a class="rbt-btn btn-gradient" href="#" onclick="return false;" (click)="updatedStudent()">Update Password</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- End Profile Row  -->
+                                    </div>
+
+                                    <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+                                        <!-- Start Profile Row  -->
+                                        <form action="#" class="rbt-profile-row rbt-default-form row row--15">
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="facebook"><i class="feather-facebook"></i> Facebook</label>
+                                                    <input id="facebook" type="text" placeholder="https://facebook.com/">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="twitter"><i class="feather-twitter"></i> Twitter</label>
+                                                    <input id="twitter" type="text" placeholder="https://twitter.com/">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="linkedin"><i class="feather-linkedin"></i> Linkedin</label>
+                                                    <input id="linkedin" type="text" placeholder="https://linkedin.com/">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="website"><i class="feather-globe"></i> Website</label>
+                                                    <input id="website" type="text" placeholder="https://website.com/">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="rbt-form-group">
+                                                    <label for="github"><i class="feather-github"></i> Github</label>
+                                                    <input id="github" type="text" placeholder="https://github.com/">
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mt--10">
+                                                <div class="rbt-form-group">
+                                                    <a class="rbt-btn btn-gradient" href="#" >Update Profile</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- End Profile Row  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Card Style -->
+<div class="rbt-separator-mid">
+    <div class="container">
+        <hr class="rbt-separator m-0">
+    </div>
+</div>

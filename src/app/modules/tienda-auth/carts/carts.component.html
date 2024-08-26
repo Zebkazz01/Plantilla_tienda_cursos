@@ -1,0 +1,162 @@
+<!-- Start breadcrumb Area -->
+<div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-inner text-center">
+                    <h2 class="title">Cart</h2>
+                    <ul class="page-list">
+                        <li class="rbt-breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li>
+                            <div class="icon-right"><i class="feather-chevron-right"></i></div>
+                        </li>
+                        <li class="rbt-breadcrumb-item active">Cart</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb Area -->
+
+<div class="rbt-cart-area bg-color-white rbt-section-gap">
+    <div class="cart_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <form action="#">
+                        <!-- Cart Table -->
+                        <div class="cart-table table-responsive mb--60">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="pro-thumbnail">Image</th>
+                                        <th class="pro-title">Course</th>
+                                        <th class="pro-price">Price</th>
+                                        <th class="pro-quantity"></th>
+                                        <th class="pro-subtotal">Total</th>
+                                        <th class="pro-remove">Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let CART of CARTS">
+                                        <tr>
+                                            <td class="pro-thumbnail">
+                                                <a href="#">
+                                                    <img [src]="CART.course.imagen" alt="Product">
+                                                </a>
+                                            </td>
+                                            <td class="pro-title"><a href="#">{{ CART.course.title }}</a></td>
+                                            <td class="pro-price"><span>${{ CART.price_unit }}</span></td>
+                                            <td class="pro-quantity">
+                                                <ng-container *ngIf="CART.code_cupon">
+                                                    <small *ngIf="CART.type_discount == 1">
+                                                        Descuento : - {{ CART.discount }} %
+                                                    </small>
+                                                    <small *ngIf="CART.type_discount == 2">
+                                                        Descuento : - {{ CART.discount }} USD
+                                                    </small>
+                                                    <br>
+                                                    <small> CUPON: {{ CART.code_cupon }}</small>
+                                                </ng-container>
+                                                <ng-container *ngIf="CART.code_discount">
+                                                    <small *ngIf="CART.type_discount == 1">
+                                                        Descuento : - {{ CART.discount }} %
+                                                    </small>
+                                                    <small *ngIf="CART.type_discount == 2">
+                                                        Descuento : - {{ CART.discount }} USD
+                                                    </small>
+                                                    <br>
+                                                    <small> CUPON: {{ CART.code_discount }}</small>
+                                                    <br>
+                                                    <small> TIPO DE CAMPAÑA: {{ getNameCampaign(CART.campaign_discount) }}</small>
+                                                </ng-container>
+                                            </td>
+                                            <td class="pro-subtotal"><span>${{ CART.total }}</span></td>
+                                            <td class="pro-remove">
+                                                <a href="#" onclick="return false;" (click)="removeItem(CART)"><i class="feather-x"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                    
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                    <div class="row g-5">
+
+                        <div class="col-lg-6 col-12">
+
+                            <!-- Calculate Shipping -->
+
+                            <!-- Discount Coupon -->
+                            <div class="discount-coupon edu-bg-shade">
+                                <div class="section-title text-start">
+                                    <h4 class="title mb--30">Discount Coupon Code</h4>
+                                </div>
+                                <form action="#">
+                                    <div class="row">
+                                        <div class="col-md-6 col-12 mb--25">
+                                            <input type="text" [(ngModel)]="code" name="code" placeholder="Coupon Code">
+                                        </div>
+                                        <div class="col-md-6 col-12 mb--25">
+                                            <button class="rbt-btn btn-gradient hover-icon-reverse btn-sm"
+                                            (click)="applyCupon()"
+                                            >
+                                                <span class="icon-reverse-wrapper">
+                                                    <span class="btn-text">Apply Code</span>
+                                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Cart Summary -->
+
+                        <div class="col-lg-5 offset-lg-1 col-12">
+                            <div class="cart-summary">
+                                <div class="cart-summary-wrap">
+                                    <div class="section-title text-start">
+                                        <h4 class="title mb--30">Cart Summary</h4>
+                                    </div>
+                                    <p>Sub Total <span>${{ TOTAL_SUM }}</span></p>
+                                    <p>Shipping Cost <span>$00.00</span></p>
+                                    <h2>Grand Total <span>${{ TOTAL_SUM }}</span></h2>
+                                </div>
+
+                                <div class="cart-submit-btn-group">
+                                    <div class="single-button w-100">
+                                        <!-- <button class="rbt-btn btn-gradient rbt-switch-btn rbt-switch-y w-100">
+                                            <span data-text="Checkout">Checkout</span>
+                                        </button> -->
+
+                                        <div #paypal ></div>
+                                    </div>
+                                    <!-- <div class="single-button w-50">
+                                        <button class="rbt-btn rbt-switch-btn rbt-switch-y w-100 btn-border">
+                                            <span data-text="Update Cart">Update Cart</span>
+                                        </button>
+                                    </div> -->
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="rbt-separator-mid">
+    <div class="container">
+        <hr class="rbt-separator m-0">
+    </div>
+</div>

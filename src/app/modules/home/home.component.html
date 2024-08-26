@@ -1,0 +1,1621 @@
+
+<app-header></app-header>
+
+<main class="rbt-main-wrapper">
+  <!-- Start Banner Area -->
+  <div class="rbt-banner-area rbt-banner-1" style="background-image: url('https://img.freepik.com/vector-gratis/fondo-degradado-tonos-verdes_23-2148382072.jpg') !important;background-size: cover;">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-12 pb--120 pt--70">
+                  <div class="content">
+                      <div class="inner">
+                          <div class="rbt-new-badge rbt-new-badge-one">
+                              <span class="rbt-new-badge-icon">🏆</span> The Leader in Online Learning
+                          </div>
+
+                          <h1 class="title">
+                              Build The Skills <br> To Drive Your Career.
+                          </h1>
+                          <p class="description">
+                              Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+                              <strong>Velit
+                                  officia consequat.</strong>
+                          </p>
+                          <div class="slider-btn">
+                              <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
+                                  <span class="icon-reverse-wrapper">
+                                      <span class="btn-text">View Course</span>
+                                  <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                  <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                                  </span>
+                              </a>
+                          </div>
+                      </div>
+                      <div class="shape-wrapper" id="scene">
+                          <img src="assets/images/banner/banner-01.png" alt="Hero Image">
+                          <div class="hero-bg-shape-1 layer" data-depth="0.4">
+                              <img src="assets/images/shape/shape-01.png" alt="Hero Image Background Shape">
+                          </div>
+                          <!-- <div class="hero-bg-shape-2 layer" data-depth="0.4">
+                              <img src="assets/images/shape/shape-02.png" alt="Hero Image Background Shape">
+                          </div> -->
+                      </div>
+
+                      <div class="banner-card pb--60 mb--50 swiper rbt-dot-bottom-center banner-swiper-active" *ngIf="CAMPAING_BANNER">
+                          <div class="swiper-wrapper">
+
+                            <ng-container *ngFor="let COURSE of COURSES_BANNERS">
+                                <!-- Start Single Card  -->
+                                <div class="swiper-slide">
+                                    <div class="rbt-card variation-01 rbt-hover">
+                                        <div class="rbt-card-img">
+                                            <a [routerLink]="['landing-curso/',COURSE.slug]" [queryParams]="{
+                                                'campaing_discount': CAMPAING_BANNER._id
+                                            }">
+                                                <img [src]="COURSE.imagen" alt="Card image">
+                                                <div class="rbt-badge-3 bg-white">
+                                                    <span *ngIf="CAMPAING_BANNER.type_discount == 1">-{{ CAMPAING_BANNER.discount }}%</span>
+                                                    <span *ngIf="CAMPAING_BANNER.type_discount == 2">-{{ CAMPAING_BANNER.discount }}USD</span>
+                                                    <span>Off</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="rbt-card-body">
+                                            <ul class="rbt-meta">
+                                                <li><i class="feather-book"></i>{{ COURSE.n_clases }} Lessons</li>
+                                                <li><i class="feather-users"></i>{{ COURSE.n_reviews }} Students</li>
+                                            </ul>
+                                            <h4 class="rbt-card-title"><a [routerLink]="['landing-curso/',COURSE.slug]" [queryParams]="{
+                                                'campaing_discount': CAMPAING_BANNER._id
+                                            }">{{ COURSE.title }}</a>
+                                            </h4>
+                                            <p class="rbt-card-text">{{ COURSE.subtitle }}</p>
+                                            <div class="rbt-review">
+                                                <div class="rating">
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 1}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 2}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 3}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 4}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 5}"></i>
+                                                </div>
+                                                <span class="rating-count"> ({{ COURSE.n_students }} Reviews)</span>
+                                            </div>
+                                            <div class="rbt-card-bottom">
+                                                <div class="rbt-price">
+                                                    <span class="current-price">${{ getNewTotal(COURSE,CAMPAING_BANNER) }}</span>
+                                                    <span class="off-price">${{ COURSE.price_usd }}</span>
+                                                </div>
+                                                <!-- <a class="rbt-btn-link" [routerLink]="['landing-curso/',COURSE.slug]" [queryParams]="{
+                                                    'campaing_discount': CAMPAING_BANNER._id
+                                                }">Learn More<i
+                                                        class="feather-arrow-right"></i></a> -->
+                                                    <a class="rbt-btn-link left-icon" (click)="addCart(COURSE,CAMPAING_BANNER)" href="#" onclick="return false;"><i class="feather-shopping-cart"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Card  -->
+                            </ng-container>
+                            
+
+                          </div>
+                          <div class="rbt-swiper-pagination"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End Banner Area -->
+
+  <div class="rbt-categories-area bg-color-white rbt-section-gapBottom">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="section-title text-center">
+                      <span class="subtitle bg-primary-opacity">CATEGORIES</span>
+                      <h2 class="title">Explore Top Courses Caterories <br /> That Change Yourself</h2>
+                  </div>
+              </div>
+          </div>
+          <div class="row g-5 mt--20">
+              <!-- Start Category Box Layout  -->
+              <ng-container *ngFor="let CATEGORIE of CATEGORIES">
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                      <a class="rbt-cat-box rbt-cat-box-1 text-center" href="course-filter-one-toggle.html">
+                          <div class="inner">
+                              <div class="icons">
+                                  <img [src]="CATEGORIE.imagen" alt="Icons Images">
+                              </div>
+                              <div class="content">
+                                  <h5 class="title">{{ CATEGORIE.title }}</h5>
+                                  <div class="read-more-btn">
+                                      <span class="rbt-btn-link">{{ CATEGORIE.count_courses }} Courses<i class="feather-arrow-right"></i></span>
+                                  </div>
+                              </div>
+                          </div>
+                      </a>
+                  </div>
+              </ng-container>
+              
+              <!-- End Category Box Layout  -->
+          </div>
+      </div>
+  </div>
+
+  <div class="rbt-counterup-area bg-color-white" *ngIf="CAMPAING_FLASH">
+      <div class="conter-style-2">
+          <div class="container">
+              <div class="row g-5 align-items-center">
+                  <div class="col-lg-6 order-2 order-lg-1">
+                      <div class="section-title text-start">
+                          <span class="subtitle bg-pink-opacity">Descuento</span>
+                          <h2 class="title" *ngIf="CAMPAING_FLASH.type_discount == 1">Aprovecha el {{ CAMPAING_FLASH.discount }}% menos en estos cursos !</h2>
+                          <h2 class="title" *ngIf="CAMPAING_FLASH.type_discount == 2">Aprovecha el {{ CAMPAING_FLASH.discount }} USD menos en estos cursos !</h2>
+                          <p class="description has-medium-font-size mt--20 mb--0">Tiempo limitado del {{ CAMPAING_FLASH.new_start_date }} a {{ CAMPAING_FLASH.new_end_date }}.</p>
+                      </div>
+                      <div class="countdown-style-1 mt--50 d-flex justify-content-center">
+                          <div class="countdown" [attr.data-date]="CAMPAING_FLASH.format_end_date" style="">
+                              <div class="countdown-container days">
+                                  <span class="countdown-value">87</span>
+                                  <span class="countdown-heading">Days</span>
+                              </div>
+                              <div class="countdown-container hours">
+                                  <span class="countdown-value">23</span>
+                                  <span class="countdown-heading">Hours</span>
+                              </div>
+                              <div class="countdown-container minutes">
+                                  <span class="countdown-value">38</span>
+                                  <span class="countdown-heading">Minutes</span>
+                              </div>
+                              <div class="countdown-container seconds">
+                                  <span class="countdown-value">27</span>
+                                  <span class="countdown-heading">Seconds</span>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 order-1 order-lg-2">
+                      <div class="row">
+                          <!-- Start Single Course  -->
+                          <ng-container *ngFor="let COURSE of COURSES_FLASH">
+                              <div class="col-md-6 col-sm-12 col-12 py-3">
+                                  <div class="rbt-card variation-01 rbt-hover">
+                                      <div class="rbt-card-img">
+                                          <a [routerLink]="['landing-curso/',COURSE.slug]" 
+                                          [queryParams]="{
+                                            'campaing_discount': CAMPAING_FLASH._id
+                                        }">
+                                              <img [src]="COURSE.imagen" alt="Card image">
+                                              <div class="rbt-badge-3 bg-white" *ngIf="CAMPAING_FLASH">
+                                                <span *ngIf="CAMPAING_FLASH.type_discount == 1">-{{ CAMPAING_FLASH.discount }}%</span>
+                                                <span *ngIf="CAMPAING_FLASH.type_discount == 2">-{{ CAMPAING_FLASH.discount }}USD</span>
+                                                <span>Off</span>
+                                            </div>
+                                          </a>
+                                      </div>
+                                      <div class="rbt-card-body">
+                                          <div class="rbt-card-top">
+                                              <div class="rbt-review">
+                                                  <div class="rating">
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 1}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 2}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 3}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 4}"></i>
+                                                    <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 5}"></i>
+                                                  </div>
+                                                  <span class="rating-count"> ({{ COURSE.n_reviews }} Reviews)</span>
+                                              </div>
+                                              <div class="rbt-bookmark-btn">
+                                                  <a class="rbt-round-btn" title="Bookmark" href="#"><i
+                                              class="feather-bookmark"></i></a>
+                                              </div>
+                                          </div>
+                                          <h4 class="rbt-card-title"><a [routerLink]="['landing-curso/',COURSE.slug]" 
+                                            [queryParams]="{
+                                                'campaing_discount': CAMPAING_FLASH._id
+                                            }">{{ COURSE.title }}</a>
+                                          </h4>
+                                          <ul class="rbt-meta">
+                                              <li><i class="feather-book"></i>{{ COURSE.n_clases }} Lessons</li>
+                                              <li><i class="feather-users"></i>{{ COURSE.n_students }} Students</li>
+                                          </ul>
+    
+                                          <div class="rbt-card-bottom">
+                                              <div class="rbt-price">
+                                                  <span class="current-price">${{ getNewTotal(COURSE,CAMPAING_FLASH) }}</span>
+                                                  <span class="off-price">${{ COURSE.price_usd }}</span>
+                                              </div>
+                                              <a class="rbt-btn-link left-icon" (click)="addCart(COURSE,CAMPAING_FLASH)" href="#" onclick="return false;"><i class="feather-shopping-cart"></i> Add To Cart</a>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </ng-container>
+                          
+                          <!-- End Single Course  -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Start Course Area -->
+  <div class="rbt-course-area bg-color-extra2 rbt-section-gap">
+      <div class="container">
+          <div class="row mb--60">
+              <div class="col-lg-12">
+                  <div class="section-title text-center">
+                      <span class="subtitle bg-secondary-opacity">Top Popular Course</span>
+                      <h2 class="title">Histudy Course student <br /> can join with us.</h2>
+                  </div>
+              </div>
+          </div>
+          <!-- Start Card Area -->
+          <div class="row g-5">
+              <!-- Start Single Course  -->
+              <ng-container *ngFor="let COURSE of COURSES_TOP">
+                  <div class="col-lg-4 col-md-6 col-12">
+                      <div class="rbt-card variation-01 rbt-hover">
+                          <div class="rbt-card-img">
+                              <a [routerLink]="['landing-curso/',COURSE.slug]">
+                                  <img [src]="COURSE.imagen" style="height: 244px;" alt="Card image">
+                                  <div class="rbt-badge-3 bg-white" *ngIf="COURSE.discount_g">
+                                      <span *ngIf="COURSE.discount_g.type_discount == 1">-{{ COURSE.discount_g.discount }}%</span>
+                                      <span *ngIf="COURSE.discount_g.type_discount == 2">-{{ COURSE.discount_g.discount }}USD</span>
+                                      <span>Off</span>
+                                  </div>
+                              </a>
+                          </div>
+                          <div class="rbt-card-body">
+    
+                              <div class="rbt-card-top">
+                                  <div class="rbt-review">
+                                      <div class="rating">
+                                        <!-- 2.8 -->
+                                          <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 1}"></i>
+                                          <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 2}"></i>
+                                          <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 3}"></i>
+                                          <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 4}"></i>
+                                          <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 5}"></i>
+                                      </div>
+                                      <span class="rating-count"> ({{ COURSE.n_reviews }} Reviews)</span>
+                                  </div>
+                                  <div class="rbt-bookmark-btn">
+                                      <a class="rbt-round-btn" title="Bookmark" href="#"><i class="feather-bookmark"></i></a>
+                                  </div>
+                              </div>
+    
+                              <h4 class="rbt-card-title"><a [routerLink]="['landing-curso/',COURSE.slug]">{{ COURSE.title }}</a>
+                              </h4>
+                              <ul class="rbt-meta">
+                                  <li><i class="feather-book"></i>{{ COURSE.n_clases }} Lessons</li>
+                                  <li><i class="feather-users"></i>{{ COURSE.n_students }} Students</li>
+                              </ul>
+                              <p class="rbt-card-text">{{ COURSE.subtitle }}</p>
+                              <div class="rbt-author-meta mb--20">
+                                  <div class="rbt-avater">
+                                      <a href="#">
+                                          <img [src]="COURSE.user.avatar ? COURSE.user.avatar : 'assets/images/client/avater-01.png'" alt="Sophia Jaymes">
+                                      </a>
+                                  </div>
+                                  <div class="rbt-author-info">
+                                      By <a href="profile.html">{{ COURSE.user.name + ' ' + COURSE.user.surname }}</a> In <a href="#">{{ COURSE.user.profsesion }}</a>
+                                  </div>
+                              </div>
+    
+                              <div class="rbt-card-bottom">
+                                  <div class="rbt-price">
+                                      <span class="current-price">${{ getTotalPriceCourse(COURSE) }}</span>
+                                      <span class="off-price" *ngIf="COURSE.discount_g">${{ COURSE.price_usd }}</span>
+                                  </div>
+                                  <!-- [routerLink]="['landing-curso/',COURSE.slug]" -->
+                                <a class="rbt-btn-link left-icon" (click)="addCart(COURSE)" href="#" onclick="return false;"><i class="feather-shopping-cart"></i> Add To Cart</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </ng-container>
+              
+              <!-- End Single Course  -->
+              <!-- End Single Course  -->
+          </div>
+          <!-- End Card Area -->
+
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="load-more-btn mt--60 text-center">
+                      <a class="rbt-btn btn-gradient btn-lg hover-icon-reverse" href="#">
+                          <span class="icon-reverse-wrapper">
+                              <span class="btn-text">Load More Course (40)</span>
+                          <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                          <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                          </span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End Course Area -->
+
+  <!-- Start About Area  -->
+  <div class="rbt-about-area bg-color-white rbt-section-gapTop pb_md--80 pb_sm--80 about-style-1">
+      <div class="container">
+          <div class="row g-5 align-items-center">
+              <div class="col-lg-6">
+                  <div class="thumbnail-wrapper">
+                      <div class="thumbnail image-1">
+                          <img data-parallax='{"x": 0, "y": -20}' src="assets/images/about/about-01.png" alt="Education Images">
+                      </div>
+                      <div class="thumbnail image-2 d-none d-xl-block">
+                          <img data-parallax='{"x": 0, "y": 60}' src="assets/images/about/about-02.png" alt="Education Images">
+                      </div>
+                      <div class="thumbnail image-3 d-none d-md-block">
+                          <img data-parallax='{"x": 0, "y": 80}' src="assets/images/about/about-03.png" alt="Education Images">
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <div class="inner pl--50 pl_sm--0 pl_md--0">
+                      <div class="section-title text-start">
+                          <span class="subtitle bg-coral-opacity">Know About Us</span>
+                          <h2 class="title">Know About Histudy <br /> Learning Platform</h2>
+                      </div>
+
+                      <p class="description mt--30">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+
+                      <!-- Start Feature List  -->
+
+                      <div class="rbt-feature-wrapper mt--20 ml_dec_20">
+                          <div class="rbt-feature feature-style-2 rbt-radius">
+                              <div class="icon bg-pink-opacity">
+                                  <i class="feather-heart"></i>
+                              </div>
+                              <div class="feature-content">
+                                  <h6 class="feature-title">Flexible Classes</h6>
+                                  <p class="feature-description">It is a long established fact that a reader will
+                                      be distracted by this on readable content of when looking at its layout.</p>
+                              </div>
+                          </div>
+
+                          <div class="rbt-feature feature-style-2 rbt-radius">
+                              <div class="icon bg-primary-opacity">
+                                  <i class="feather-book"></i>
+                              </div>
+                              <div class="feature-content">
+                                  <h6 class="feature-title">Learn From Anywhere</h6>
+                                  <p class="feature-description">Sed distinctio repudiandae eos recusandae laborum eaque non eius iure suscipit laborum eaque non eius iure suscipit.</p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- End Feature List  -->
+                      <div class="about-btn mt--40">
+                          <a class="rbt-btn btn-gradient hover-icon-reverse" href="#">
+                              <span class="icon-reverse-wrapper">
+                      <span class="btn-text">More About Us</span>
+                              <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                              <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                              </span>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End About Area  -->
+
+  <!-- Start Call To Action  -->
+  <div class="rbt-callto-action-area mt_dec--half">
+      <div class="container">
+          <div class="row g-5">
+              <div class="col-lg-6">
+                  <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                      <div class="row align-items-center">
+                          <div class="col-lg-12 col-xl-5">
+                              <div class="inner">
+                                  <div class="rbt-category mb--20">
+                                      <a href="#">New Collection</a>
+                                  </div>
+                                  <h4 class="title mb--15">Online Courses from Histudy</h4>
+                                  <p class="mb--15">Top instructors from around the world</p>
+                              </div>
+                          </div>
+                          <div class="col-lg-12 col-xl-7">
+                              <div class="video-popup-wrapper mt_lg--10 mt_md--20 mt_sm--20">
+                                  <img class="w-100 rbt-radius" src="assets/images/others/video-01.jpg" alt="Video Images">
+                                  <a class="rbt-btn rounded-player-2 sm-size popup-video position-to-top with-animation" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
+                                      <span class="play-icon"></span>
+                                  </a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <div class="rbt-callto-action callto-action-default bg-color-white rbt-radius shadow-1">
+                      <div class="row align-items-center">
+                          <div class="col-lg-12">
+                              <div class="inner">
+                                  <div class="rbt-category mb--20">
+                                      <a href="#">Top Teacher</a>
+                                  </div>
+                                  <h4 class="title mb--10">Free Online Courses from Histudy School To Education</h4>
+                                  <p class="mb--15">Top instructors from around the world</p>
+                                  <div class="read-more-btn">
+                                      <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm" href="#">
+                                          <span data-text="Join Now">Join Now</span>
+                                      </a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- End Call To Action  -->
+
+  <!-- Start Counterup Area  -->
+  <div class="rbt-counterup-area bg-color-extra2 rbt-section-gapBottom default-callto-action-overlap">
+      <div class="container">
+          <div class="row mb--60">
+              <div class="col-lg-12">
+                  <div class="section-title text-center">
+                      <span class="subtitle bg-primary-opacity">Why Choose Us</span>
+                      <h2 class="title">Creating A Community Of <br /> Life Long Learners.</h2>
+                  </div>
+              </div>
+          </div>
+          <div class="row g-5 hanger-line">
+              <!-- Start Single Counter  -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                  <div class="rbt-counterup rbt-hover-03 border-bottom-gradient">
+                      <div class="top-circle-shape"></div>
+                      <div class="inner">
+                          <div class="rbt-round-icon">
+                              <img src="assets/images/icons/counter-01.png" alt="Icons Images">
+                          </div>
+                          <div class="content">
+                              <h3 class="counter"><span class="odometer" data-count="500">00</span>
+                              </h3>
+                              <span class="subtitle">Learners &amp; counting</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Counter  -->
+
+              <!-- Start Single Counter  -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--60 mt_md--30 mt_sm--30 mt_mobile--60">
+                  <div class="rbt-counterup rbt-hover-03 border-bottom-gradient">
+                      <div class="top-circle-shape"></div>
+                      <div class="inner">
+                          <div class="rbt-round-icon">
+                              <img src="assets/images/icons/counter-02.png" alt="Icons Images">
+                          </div>
+                          <div class="content">
+                              <h3 class="counter"><span class="odometer" data-count="800">00</span>
+                              </h3>
+                              <span class="subtitle">Courses & Video</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Counter  -->
+
+              <!-- Start Single Counter  -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt_md--60 mt_sm--60">
+                  <div class="rbt-counterup rbt-hover-03 border-bottom-gradient">
+                      <div class="top-circle-shape"></div>
+                      <div class="inner">
+                          <div class="rbt-round-icon">
+                              <img src="assets/images/icons/counter-03.png" alt="Icons Images">
+                          </div>
+                          <div class="content">
+                              <h3 class="counter"><span class="odometer" data-count="1000">00</span>
+                              </h3>
+                              <span class="subtitle">Certified Students</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Counter  -->
+
+              <!-- Start Single Counter  -->
+              <div class="col-lg-3 col-md-6 col-sm-6 col-12 mt--60 mt_md--60 mt_sm--60">
+                  <div class="rbt-counterup rbt-hover-03 border-bottom-gradient">
+                      <div class="top-circle-shape"></div>
+                      <div class="inner">
+                          <div class="rbt-round-icon">
+                              <img src="assets/images/icons/counter-04.png" alt="Icons Images">
+                          </div>
+                          <div class="content">
+                              <h3 class="counter"><span class="odometer" data-count="100">00</span>
+                              </h3>
+                              <span class="subtitle">Registered Enrolls</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Counter  -->
+          </div>
+      </div>
+  </div>
+  <!-- End Counterup Area  -->
+
+  <!-- Start Testimonial Area   -->
+  <div class="rbt-testimonial-area bg-color-white rbt-section-gap overflow-hidden">
+      <div class="wrapper">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="section-title text-center mb--10">
+                          <span class="subtitle bg-primary-opacity">EDUCATION FOR EVERYONE</span>
+                          <h2 class="title">People like histudy education. <br /> No joking - here’s the proof!</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="scroll-animation-wrapper mt--50">
+          <div class="scroll-animation scroll-right-left">
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-01.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Martha Maldonado</h5>
+                                  <span>Executive Chairman <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">After the launch, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-02.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Michael D. Lovelady</h5>
+                                  <span>CEO <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Histudy education, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-03.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Valerie J. Creasman</h5>
+                                  <span>Executive Designer <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Our educational, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-04.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Hannah R. Sutton</h5>
+                                  <span>Executive Chairman <i>@ Facebook</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">People says about, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-05.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Pearl B. Hill</h5>
+                                  <span>Chairman SR <i>@ Facebook</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Like this histudy, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-06.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Mandy F. Wood</h5>
+                                  <span>SR Designer <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Educational template, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-07.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Mildred W. Diaz</h5>
+                                  <span>Executive Officer <i>@ Yelp</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Online leaning, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-08.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Christopher H. Win</h5>
+                                  <span>Product Designer <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Remote learning, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-01.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Martha Maldonado</h5>
+                                  <span>Executive Chairman <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">University managemnet, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+          </div>
+      </div>
+
+      <div class="scroll-animation-wrapper mt--30">
+          <div class="scroll-animation scroll-left-right">
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-01.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Martha Maldonado</h5>
+                                  <span>Executive Chairman <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">After the launch, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-02.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Michael D. Lovelady</h5>
+                                  <span>CEO <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Histudy education, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-03.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Valerie J. Creasman</h5>
+                                  <span>Executive Designer <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Our educational, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-04.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Hannah R. Sutton</h5>
+                                  <span>Executive Chairman <i>@ Facebook</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">People says about, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-05.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Pearl B. Hill</h5>
+                                  <span>Chairman SR <i>@ Facebook</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Like this histudy, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-06.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Mandy F. Wood</h5>
+                                  <span>SR Designer <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Educational template, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-07.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Mildred W. Diaz</h5>
+                                  <span>Executive Officer <i>@ Yelp</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Online leaning, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-08.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Christopher H. Win</h5>
+                                  <span>Product Designer <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">Remote learning, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+
+              <!-- Start Single Testimonial  -->
+              <div class="single-column-20">
+                  <div class="rbt-testimonial-box">
+                      <div class="inner">
+                          <div class="clint-info-wrapper">
+                              <div class="thumb">
+                                  <img src="assets/images/testimonial/client-01.png" alt="Clint Images">
+                              </div>
+                              <div class="client-info">
+                                  <h5 class="title">Martha Maldonado</h5>
+                                  <span>Executive Chairman <i>@ Google</i></span>
+                              </div>
+                          </div>
+                          <div class="description">
+                              <p class="subtitle-3">University managemnet, vulputate at sapien sit amet,
+                                  auctor iaculis lorem. In vel hend rerit nisi. Vestibulum eget risus velit.</p>
+                              <a class="rbt-btn-link" href="#">Read Project Case Study<i
+                              class="feather-arrow-right"></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Testimonial  -->
+          </div>
+      </div>
+  </div>
+  <!-- End Testimonial Area   -->
+
+  <!-- Start Course Area  <div class="rbt-event-area rbt-section-gap bg-gradient-3">-->
+<div class="rbt-course-area bg-gradient-3 rbt-section-gap">
+  <div class="container">
+      <div class="row mb--60">
+          <div class="col-lg-12">
+              <div class="section-title text-center">
+                  <span class="subtitle bg-primary-opacity">Courses</span>
+                  <h2 class="title">Histudy All Courses</h2>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-lg-12">
+              <ul class="rbt-portfolio-filter filter-tab-button text-center nav nav-tabs" id="rbt-myTab" role="tablist">
+                  
+                 <ng-container *ngFor="let CATEGORIES_SECTION of CATEGORIES_SECTIONS;let i = index">
+                      <li class="nav-item" role="presentation">
+                           <button [ngClass]="{'active': i == 0}" id="all-tab" data-bs-toggle="tab" 
+                           [attr.data-bs-target]="'#'+CATEGORIES_SECTION.title_empty" 
+                           type="button" role="tab" aria-controls="all" aria-selected="true"><span class="filter-text">
+                       {{ CATEGORIES_SECTION.title }}</span> <span class="course-number">{{ CATEGORIES_SECTION.count_courses }}</span></button>
+                       </li>
+
+                  </ng-container>
+                  
+                  
+              </ul>
+          </div>
+      </div>
+      <!-- Start Card Area -->
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="tab-content mt--60" id="rbt-myTabContent">
+
+                <ng-container *ngFor="let CATEGORIES_SECTION of CATEGORIES_SECTIONS;let i = index">
+                    <div class="tab-pane fade" [ngClass]="{'show active': i == 0}" [attr.id]="CATEGORIES_SECTION.title_empty" role="tabpanel" aria-labelledby="all">
+                        <div class="row g-5">
+                            
+                            <ng-container *ngFor="let COURSE of CATEGORIES_SECTION.courses;let i = index">
+                                <!-- Start Single Course  -->
+                                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 col-12">
+                                    <div class="rbt-card variation-01 rbt-hover">
+                                        <div class="rbt-card-img">
+                                            <a [routerLink]="['landing-curso/',COURSE.slug]">
+                                                <img [src]="COURSE.imagen" alt="Card image">
+
+                                                <div class="rbt-badge-3 bg-white" *ngIf="COURSE.discount_g">
+                                                    <span *ngIf="COURSE.discount_g.type_discount == 1">-{{ COURSE.discount_g.discount }}%</span>
+                                                    <span *ngIf="COURSE.discount_g.type_discount == 2">-{{ COURSE.discount_g.discount }}USD</span>
+                                                    <span>Off</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="rbt-card-body">
+                                            <div class="rbt-card-top">
+                                                <div class="rbt-review">
+                                                    <div class="rating">
+                                                        <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 1}"></i>
+                                                        <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 2}"></i>
+                                                        <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 3}"></i>
+                                                        <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 4}"></i>
+                                                        <i class="fas fa-star" [ngClass]="{'rating': COURSE.avg_rating < 5}"></i>
+                                                        </div>
+                                                    <span class="rating-count"> ({{ COURSE.n_reviews }} Reviews)</span>
+                                                </div>
+                                                <div class="rbt-bookmark-btn">
+                                                    <a class="rbt-round-btn" title="Bookmark" href="#"><i
+                                                class="feather-bookmark"></i></a>
+                                                </div>
+                                            </div>
+                                            <h4 class="rbt-card-title"><a [routerLink]="['landing-curso/',COURSE.slug]">{{ COURSE.title }}</a>
+                                            </h4>
+                                            <ul class="rbt-meta">
+                                                <li><i class="feather-book"></i>{{ COURSE.n_clases }} Lessons</li>
+                                                <li><i class="feather-users"></i>{{ COURSE.n_students }} Students</li>
+                                            </ul>
+        
+                                            <div class="rbt-card-bottom">
+                                                <div class="rbt-price">
+                                                    <span class="current-price">${{ getTotalPriceCourse(COURSE) }}</span>
+                                                    <span class="off-price" *ngIf="COURSE.discount_g">${{ COURSE.price_usd  }}</span>
+                                                </div>
+                                                <a class="rbt-btn-link left-icon" (click)="addCart(COURSE)" href="#" onclick="return false;"><i class="feather-shopping-cart"></i> Add To Cart</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Course  -->
+                            </ng-container>
+                            
+    
+                        </div>
+                    </div>
+                </ng-container>
+
+                  
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- End Course Area  -->
+
+
+  <!-- End Event Area  -->
+  <div class="rbt-team-area bg-color-white rbt-section-gap">
+      <div class="container">
+          <div class="row mb--60">
+              <div class="col-lg-12">
+                  <div class="section-title text-center">
+                      <span class="subtitle bg-primary-opacity">Our Teacher</span>
+                      <h2 class="title">Whose Inspirations You</h2>
+                  </div>
+              </div>
+          </div>
+          <div class="row g-5">
+
+              <div class="col-lg-7">
+                  <!-- Start Tab Content  -->
+                  <div class="rbt-team-tab-content tab-content" id="myTabContent">
+                      <div class="tab-pane fade active show" id="team-tab1" role="tabpanel" aria-labelledby="team-tab1-tab">
+                          <div class="inner">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-01.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                              <div class="rbt-team-details">
+                                  <div class="author-info">
+                                      <h4 class="title">Mames Mary</h4>
+                                      <span class="designation theme-gradient">English Teacher</span>
+                                      <span class="team-form">
+                          <i class="feather-map-pin"></i>
+                          <span class="location">CO Miego, AD,USA</span>
+                                      </span>
+                                  </div>
+                                  <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+                                  <ul class="social-icon social-default mt--20 justify-content-start">
+                                      <li><a href="https://www.facebook.com/">
+                                              <i class="feather-facebook"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.twitter.com">
+                                              <i class="feather-twitter"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.instagram.com/">
+                                              <i class="feather-instagram"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                                  <ul class="rbt-information-list mt--25">
+                                      <li>
+                                          <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
+                                      </li>
+                                      <li>
+                                          <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="team-tab2" role="tabpanel" aria-labelledby="team-tab2-tab">
+                          <div class="inner">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-02.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                              <div class="rbt-team-details">
+                                  <div class="author-info">
+                                      <h4 class="title">Robert Song</h4>
+                                      <span class="designation theme-gradient">Math Teacher</span>
+                                      <span class="team-form">
+                          <i class="feather-map-pin"></i>
+                          <span class="location">CO Miego, AD,USA</span>
+                                      </span>
+                                  </div>
+                                  <p>Education The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+                                  <ul class="social-icon social-default mt--20 justify-content-start">
+                                      <li><a href="https://www.facebook.com/">
+                                              <i class="feather-facebook"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.twitter.com">
+                                              <i class="feather-twitter"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.instagram.com/">
+                                              <i class="feather-instagram"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                                  <ul class="rbt-information-list mt--25">
+                                      <li>
+                                          <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
+                                      </li>
+                                      <li>
+                                          <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="team-tab3" role="tabpanel" aria-labelledby="team-tab3-tab">
+                          <div class="inner">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-03.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                              <div class="rbt-team-details">
+                                  <div class="author-info">
+                                      <h4 class="title">William Susan</h4>
+                                      <span class="designation theme-gradient">React Teacher</span>
+                                      <span class="team-form">
+                          <i class="feather-map-pin"></i>
+                          <span class="location">CO Miego, AD,USA</span>
+                                      </span>
+                                  </div>
+                                  <p>React The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+                                  <ul class="social-icon social-default mt--20 justify-content-start">
+                                      <li><a href="https://www.facebook.com/">
+                                              <i class="feather-facebook"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.twitter.com">
+                                              <i class="feather-twitter"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.instagram.com/">
+                                              <i class="feather-instagram"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                                  <ul class="rbt-information-list mt--25">
+                                      <li>
+                                          <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
+                                      </li>
+                                      <li>
+                                          <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="team-tab4" role="tabpanel" aria-labelledby="team-tab4-tab">
+                          <div class="inner">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-04.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                              <div class="rbt-team-details">
+                                  <div class="author-info">
+                                      <h4 class="title">Soseph Sara</h4>
+                                      <span class="designation theme-gradient">Web Teacher</span>
+                                      <span class="team-form">
+                          <i class="feather-map-pin"></i>
+                          <span class="location">CO Miego, AD,USA</span>
+                                      </span>
+                                  </div>
+                                  <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+                                  <ul class="social-icon social-default mt--20 justify-content-start">
+                                      <li><a href="https://www.facebook.com/">
+                                              <i class="feather-facebook"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.twitter.com">
+                                              <i class="feather-twitter"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.instagram.com/">
+                                              <i class="feather-instagram"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                                  <ul class="rbt-information-list mt--25">
+                                      <li>
+                                          <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
+                                      </li>
+                                      <li>
+                                          <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="team-tab5" role="tabpanel" aria-labelledby="team-tab5-tab">
+                          <div class="inner">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-05.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                              <div class="rbt-team-details">
+                                  <div class="author-info">
+                                      <h4 class="title">Thomas Dal</h4>
+                                      <span class="designation theme-gradient">Graphic Teacher</span>
+                                      <span class="team-form">
+                          <i class="feather-map-pin"></i>
+                          <span class="location">CO Miego, AD,USA</span>
+                                      </span>
+                                  </div>
+                                  <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+                                  <ul class="social-icon social-default mt--20 justify-content-start">
+                                      <li><a href="https://www.facebook.com/">
+                                              <i class="feather-facebook"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.twitter.com">
+                                              <i class="feather-twitter"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.instagram.com/">
+                                              <i class="feather-instagram"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                                  <ul class="rbt-information-list mt--25">
+                                      <li>
+                                          <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
+                                      </li>
+                                      <li>
+                                          <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="tab-pane fade" id="team-tab6" role="tabpanel" aria-labelledby="team-tab6-tab">
+                          <div class="inner">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-06.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                              <div class="rbt-team-details">
+                                  <div class="author-info">
+                                      <h4 class="title">Christopher Lisa</h4>
+                                      <span class="designation theme-gradient">English Teacher</span>
+                                      <span class="team-form">
+                          <i class="feather-map-pin"></i>
+                          <span class="location">CO Miego, AD,USA</span>
+                                      </span>
+                                  </div>
+                                  <p>Histudy The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested.</p>
+                                  <ul class="social-icon social-default mt--20 justify-content-start">
+                                      <li><a href="https://www.facebook.com/">
+                                              <i class="feather-facebook"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.twitter.com">
+                                              <i class="feather-twitter"></i>
+                                          </a>
+                                      </li>
+                                      <li><a href="https://www.instagram.com/">
+                                              <i class="feather-instagram"></i>
+                                          </a>
+                                      </li>
+                                  </ul>
+                                  <ul class="rbt-information-list mt--25">
+                                      <li>
+                                          <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
+                                      </li>
+                                      <li>
+                                          <a href="mailto:hello@example.com"><i class="feather-mail"></i>example@gmail.com</a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="top-circle-shape"></div>
+                  </div>
+                  <!-- End Tab Content  -->
+              </div>
+
+              <div class="col-lg-5">
+                  <!-- Start Tab Nav  -->
+                  <ul class="rbt-team-tab-thumb nav nav-tabs" id="myTab" role="tablist">
+                      <li>
+                          <a class="active" id="team-tab1-tab" data-bs-toggle="tab" data-bs-target="#team-tab1" role="tab" aria-controls="team-tab1" aria-selected="true">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-01.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                          </a>
+                      </li>
+
+                      <li>
+                          <a id="team-tab2-tab" data-bs-toggle="tab" data-bs-target="#team-tab2" role="tab" aria-controls="team-tab2" aria-selected="false">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-02.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                          </a>
+                      </li>
+
+                      <li>
+                          <a id="team-tab3-tab" data-bs-toggle="tab" data-bs-target="#team-tab3" role="tab" aria-controls="team-tab3" aria-selected="false">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-03.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                          </a>
+                      </li>
+                      <li>
+                          <a id="team-tab4-tab" data-bs-toggle="tab" data-bs-target="#team-tab4" role="tab" aria-controls="team-tab4" aria-selected="false">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-04.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                          </a>
+                      </li>
+
+                      <li>
+                          <a id="team-tab5-tab" data-bs-toggle="tab" data-bs-target="#team-tab5" role="tab" aria-controls="team-tab5" aria-selected="false">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-05.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                          </a>
+                      </li>
+
+                      <li>
+                          <a id="team-tab6-tab" data-bs-toggle="tab" data-bs-target="#team-tab6" role="tab" aria-controls="team-tab6" aria-selected="false">
+                              <div class="rbt-team-thumbnail">
+                                  <div class="thumb">
+                                      <img src="assets/images/team/team-06.jpg" alt="Testimonial Images">
+                                  </div>
+                              </div>
+                          </a>
+                      </li>
+
+                  </ul>
+                  <!-- End Tab Content  -->
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- Start Blog Style -->
+  <div class="rbt-rbt-blog-area rbt-section-gap bg-color-extra2">
+      <div class="container">
+          <div class="row g-5 align-items-center mb--30">
+              <div class="col-lg-6 col-md-6 col-12">
+                  <div class="section-title">
+                      <span class="subtitle bg-pink-opacity">Blog Post</span>
+                      <h2 class="title">Post Popular Post.</h2>
+                  </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-12">
+                  <div class="read-more-btn text-start text-md-end">
+                      <a class="rbt-btn btn-gradient hover-icon-reverse" href="blog.html">
+                          <div class="icon-reverse-wrapper">
+                              <span class="btn-text">See All Articles</span>
+                              <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                              <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <!-- Start Card Area -->
+          <div class="row row--15">
+              <!-- Start Single Card  -->
+              <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+                  <div class="rbt-card variation-02 height-330 rbt-hover">
+                      <div class="rbt-card-img">
+                          <a href="blog-details.html">
+                              <img src="assets/images/blog/blog-card-01.jpg" alt="Card image"> </a>
+                      </div>
+                      <div class="rbt-card-body">
+                          <h3 class="rbt-card-title"><a href="blog-details.html">React</a></h3>
+                          <p class="rbt-card-text">It is a long established fact that a reader.</p>
+                          <div class="rbt-card-bottom">
+                              <a class="transparent-button" href="blog-details.html">Learn More<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- End Single Card  -->
+              <div class="col-lg-6 col-md-12 col-sm-12 col-12 mt--30" data-sal-delay="150" data-sal="slide-up" data-sal-duration="800">
+
+                  <!-- Start Single Card  -->
+                  <div class="rbt-card card-list variation-02 rbt-hover">
+                      <div class="rbt-card-img">
+                          <a href="blog-details.html">
+                              <img src="assets/images/blog/blog-card-02.jpg" alt="Card image"> </a>
+                      </div>
+                      <div class="rbt-card-body">
+                          <h5 class="rbt-card-title"><a href="blog-details.html">Why Is Education So Famous?</a></h5>
+                          <div class="rbt-card-bottom">
+                              <a class="transparent-button" href="blog-details.html">Read Article<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- End Single Card  -->
+
+                  <!-- Start Single Card  -->
+                  <div class="rbt-card card-list variation-02 rbt-hover mt--30">
+                      <div class="rbt-card-img">
+                          <a href="blog-details.html">
+                              <img src="assets/images/blog/blog-card-03.jpg" alt="Card image"> </a>
+                      </div>
+                      <div class="rbt-card-body">
+                          <h5 class="rbt-card-title"><a href="blog-details.html">Difficult Things About Education.</a></h5>
+                          <div class="rbt-card-bottom">
+                              <a class="transparent-button" href="blog-details.html">Read Article<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- End Single Card  -->
+
+                  <!-- Start Single Card  -->
+                  <div class="rbt-card card-list variation-02 rbt-hover mt--30">
+                      <div class="rbt-card-img">
+                          <a href="blog-details.html">
+                              <img src="assets/images/blog/blog-card-04.jpg" alt="Card image"> </a>
+                      </div>
+                      <div class="rbt-card-body">
+                          <h5 class="rbt-card-title"><a href="blog-details.html">Education Is So Famous, But Why?</a></h5>
+                          <div class="rbt-card-bottom">
+                              <a class="transparent-button" href="blog-details.html">Read Article<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                          </div>
+                      </div>
+                  </div>
+                  <!-- End Single Card  -->
+              </div>
+          </div>
+          <!-- End Card Area -->
+      </div>
+  </div>
+  <!-- End Blog Style -->
+
+  <div class="rbt-newsletter-area newsletter-style-2 bg-color-primary rbt-section-gap">
+      <div class="container">
+          <div class="row row--15 align-items-center">
+              <div class="col-lg-12">
+                  <div class="inner text-center">
+                      <div class="section-title text-center">
+                          <span class="subtitle bg-white-opacity">Get Latest Histudy Update</span>
+                          <h2 class="title color-white"><strong>Subscribe</strong> Our Newsletter</h2>
+                          <p class="description color-white mt--20">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam explicabo sit est eos earum reprehenderit inventore nam autem corrupti rerum!</p>
+                      </div>
+                      <form action="#" class="newsletter-form-1 mt--40">
+                          <input type="email" placeholder="Enter Your E-Email">
+                          <button type="submit" class="rbt-btn btn-md btn-gradient hover-icon-reverse">
+                              <span class="icon-reverse-wrapper">
+                      <span class="btn-text">Subscribe</span>
+                              <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                              <span class="btn-icon"><i class="feather-arrow-right"></i></span>
+                              </span>
+                          </button>
+                      </form>
+                      <span class="note-text color-white mt--20">No ads, No trails, No commitments</span>
+
+                      <div class="row row--15 mt--50">
+                          <!-- Start Single Counter -->
+                          <div class="col-lg-3 offset-lg-3 col-md-6 col-sm-6 single-counter">
+                              <div class="rbt-counterup rbt-hover-03 style-2 text-color-white">
+                                  <div class="inner">
+                                      <div class="content">
+                                          <h3 class="counter color-white"><span class="odometer" data-count="500">00</span>
+                                          </h3>
+                                          <h5 class="title color-white">Successfully Trained</h5>
+                                          <span class="subtitle color-white">Learners &amp; counting</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- End Single Counter -->
+
+                          <!-- Start Single Counter -->
+                          <div class="col-lg-3 col-md-6 col-sm-6 single-counter mt_mobile--30">
+                              <div class="rbt-counterup rbt-hover-03 style-2 text-color-white">
+                                  <div class="inner">
+                                      <div class="content">
+                                          <h3 class="counter color-white"><span class="odometer" data-count="100">00</span>
+                                          </h3>
+                                          <h5 class="title color-white">Certification Students</h5>
+                                          <span class="subtitle color-white">Online Course</span>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- End Single Counter -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <app-footer></app-footer>
+</main>
+
+<!-- End Page Wrapper Area -->
+<div class="rbt-progress-parent">
+  <svg class="rbt-back-circle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+  </svg>
+</div>

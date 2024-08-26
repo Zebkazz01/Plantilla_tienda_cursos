@@ -1,0 +1,319 @@
+<!-- End Side Vav -->
+<a class="close_side_menu" href="javascript:void(0);"></a>
+
+
+<div class="rbt-page-banner-wrapper" *ngIf="COURSE_SELECTED">
+    <!-- Start Banner BG Image  -->
+    <div class="rbt-banner-image"></div>
+    <!-- End Banner BG Image  -->
+    <div class="rbt-banner-content">
+        <!-- Start Banner Content Top  -->
+        <div class="rbt-banner-content-top rbt-breadcrumb-style-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2">
+                        <div class="content text-center">
+
+                            <div class="d-flex align-items-center flex-wrap justify-content-center mb--15 rbt-course-details-feature">
+                                <div class="feature-sin best-seller-badge">
+                                    <span class="rbt-badge-2">
+                                            <span class="image"><img src="assets/images/icons/card-icon-1.png"
+                                                    alt="Best Seller Icon"></span> Bestseller
+                                    </span>
+                                </div>
+
+                                <div class="feature-sin rating">
+                                    <a href="#">{{ COURSE_SELECTED.avg_rating }}</a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                    <a href="#"><i class="fa fa-star"></i></a>
+                                </div>
+                                <div class="feature-sin total-rating">
+                                    <a class="rbt-badge-4" href="#">{{ COURSE_SELECTED.num_review }} rating</a>
+                                </div>
+                                <div class="feature-sin total-student">
+                                    <span>{{ COURSE_SELECTED.n_students }} students</span>
+                                </div>
+                            </div>
+                            <h2 class="title theme-gradient">{{ COURSE_SELECTED.title }}</h2>
+
+                            <div class="rbt-author-meta mb--20 justify-content-center">
+                                <div class="rbt-avater">
+                                    <a href="#">
+                                        <img [src]="COURSE_SELECTED.user.avatar" alt="Sophia Jaymes">
+                                    </a>
+                                </div>
+                                <div class="rbt-author-info">
+                                    By <a href="profile.html">{{ COURSE_SELECTED.user.full_name }}</a> In <a href="#">{{ COURSE_SELECTED.user.profession }}</a>
+                                </div>
+                            </div>
+
+                            <ul class="rbt-meta">
+                                <li><i class="feather-calendar"></i>Last updated {{ COURSE_SELECTED.updated_date }}</li>
+                                <li><i class="feather-globe"></i>{{ COURSE_SELECTED.idioma }}</li>
+                                <li><i class="feather-award"></i>Certified Course</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Banner Content Top  -->
+    </div>
+</div>
+
+<div class="rbt-section-overlayping-top rbt-section-gapBottom" *ngIf="COURSE_SELECTED">
+    <div class="inner">
+        <div class="container">
+            <div class="col-lg-12">
+                <!-- Start Viedo Wrapper  -->
+                <!-- <a class="video-popup-with-text video-popup-wrapper text-center popup-video mb--15" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
+                    <div class="video-content">
+                        <img class="w-100 rbt-radius" src="assets/images/others/video-07.jpg" alt="Video Images">
+                        <div class="position-to-top">
+                            <span class="rbt-btn rounded-player-2 with-animation">
+                                    <span class="play-icon"></span>
+                            </span>
+                        </div>
+                        <span class="play-view-text d-block color-white"><i class="feather-eye"></i> Preview this course</span>
+                    </div>
+                </a> -->
+                <ng-container *ngIf="CLASE_SELECTED">
+                    <iframe style="width: 100%;" height="800" 
+                        [src]="urlVideo(CLASE_SELECTED)"
+                        [title]="CLASE_SELECTED.title"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </ng-container>
+                
+                <!-- End Viedo Wrapper  -->
+
+                <div class="row row--30 gy-5 pt--60 justify-content-center">
+
+
+                    <div class="col-lg-8">
+                        <!-- Start Course Details  -->
+                        <div class="course-details-content">
+                            <div class="rbt-inner-onepage-navigation sticky-top">
+                                <nav class="mainmenu-nav onepagenav">
+                                    <ul class="mainmenu">
+                                        <li class="current">
+                                            <a href="#coursecontent">Course Content</a>
+                                        </li>
+                                        <li >
+                                            <a href="#overview">Overview</a>
+                                        </li>
+                                        <li>
+                                            <a href="#details">Details</a>
+                                        </li>
+                                        <li>
+                                            <a href="#intructor">Intructor</a>
+                                        </li>
+                                        <!-- <li>
+                                            <a href="#review">Review</a>
+                                        </li> -->
+                                    </ul>
+                                </nav>
+                            </div>
+
+                            <!-- Start Course Content  -->
+                            <div class="course-content rbt-shadow-box coursecontent-wrapper mt--30 has-show-more" id="coursecontent">
+                                <div class="rbt-course-feature-inner">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">Course Content</h4>
+                                    </div>
+                                    <div class="rbt-accordion-style rbt-accordion-02 accordion">
+                                        <div class="accordion" id="accordionExampleb2">
+
+                                            <ng-container *ngFor="let SECTION of COURSE_SELECTED.malla_curricular; let i = index">
+
+                                                <div class="accordion-item card">
+                                                    <h2 class="accordion-header card-header" id="headingTwo1">
+                                                        <button class="accordion-button" [ngClass]="{'collapsed': i != 0}" type="button" data-bs-toggle="collapse" 
+                                                        [attr.data-bs-target]="'#collapseTwo'+SECTION._id" aria-expanded="true" 
+                                                        [attr.aria-controls]="'collapseTwo'+SECTION._id"
+                                                        >
+                                                            {{ SECTION.title }} <span class="rbt-badge-5 ml--10">{{ SECTION.time_parse }}</span>
+                                                        </button>
+                                                    </h2>
+                                                    <!-- [ngClass]="{'show': i == 0}" -->
+                                                    <div [attr.id]="'collapseTwo'+SECTION._id" class="accordion-collapse collapse show" aria-labelledby="headingTwo1" data-bs-parent="#accordionExampleb2">
+                                                        <div class="accordion-body card-body pr--0">
+                                                            <ul class="rbt-course-main-content liststyle">
+        
+                                                                <ng-container *ngFor="let CLASE of SECTION.clases"> 
+                                                                    <li class="d-flex">
+                                                                        <div class="form-check mx-2">
+                                                                            <!-- [checked]="i == 0" -->
+                                                                            <input type="checkbox" class="form-check-input" [checked]="COURSE_STUDENT.clases_checked.includes(CLASE._id)" (click)="checkedClase(CLASE)"  [id]="'exampleCheck'+CLASE._id">
+                                                                            <label class="form-check-label" [for]="'exampleCheck'+CLASE._id">Check</label>
+                                                                        </div>
+                                                                        <a href="#" onclick="return false;" (click)="selectedClase(CLASE)">
+                                                                            <div class="course-content-left">
+                                                                                <i class="feather-play-circle"></i> <span
+                                                                                    class="text">{{ CLASE.title }}</span>
+                                                                            </div>
+                                                                            <div class="course-content-right">
+                                                                                <span class="min-lable">{{ CLASE.time_parse }}</span>
+                                                                                <span class="rbt-badge variation-03 bg-primary-opacity"><i class="feather-eye"></i> Preview</span>
+                                                                            </div>
+                                                                        </a>
+                                                                    </li>
+                                                                </ng-container>
+            
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                            </ng-container>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Course Content  -->
+                            
+                            <!-- Start Course Resource  -->
+                            <div class="course-content rbt-shadow-box coursecontent-wrapper mt--30 has-show-more" id="coursepdf">
+                                <div class="rbt-course-feature-inner">
+                                    <div class="section-title">
+                                        <h4 class="rbt-title-style-3">Recursos</h4>
+                                    </div>
+                                    <div class="row" *ngIf="CLASE_SELECTED">
+                                        <ng-container *ngFor="let file of CLASE_SELECTED.files">
+                                            <div class="col-6">
+                                                <div class="course-content-left">
+                                                  <a [href]="file.file">
+                                                    <i class="feather-file-text"></i> <span
+                                                            class="text">{{ file.file_name }}</span>
+                                                  </a> 
+                                                </div>
+                                            </div>
+                                        </ng-container>
+                                        
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Course Resource  -->
+
+                            <!-- Start Course Feature Box  -->
+                            <div class="rbt-course-feature-box overview-wrapper rbt-shadow-box mt--30" id="overview">
+                                <div class="rbt-course-feature-inner has-show-more-inner-content" [innerHtml]="COURSE_SELECTED.description">
+                                    
+                                </div>
+                                <div class="rbt-show-more-btn">Show More</div>
+                            </div>
+                            <!-- End Course Feature Box  -->
+
+                            <!-- Start Course Feature Box  -->
+                            <div class="rbt-course-feature-box rbt-shadow-box details-wrapper mt--30" id="details">
+                                <div class="row g-5">
+                                    <!-- Start Feture Box  -->
+                                    <div class="col-lg-6">
+                                        <div class="section-title">
+                                            <h4 class="rbt-title-style-3 mb--20">Requirements</h4>
+                                        </div>
+                                        <ul class="rbt-list-style-1">
+                                            
+                                            <ng-container *ngFor="let requirement of COURSE_SELECTED.requirements">
+                                                <li><i class="feather-check"></i>{{ requirement }}</li>
+                                            </ng-container>
+                                        </ul>
+                                    </div>
+                                    <!-- End Feture Box  -->
+
+                                    <!-- Start Feture Box  -->
+                                    <div class="col-lg-6">
+                                        <div class="section-title">
+                                            <h4 class="rbt-title-style-3 mb--20">¿A quien esta dirigido?</h4>
+                                        </div>
+                                        <ul class="rbt-list-style-1">
+                                            <ng-container *ngFor="let who_is_it_for of COURSE_SELECTED.who_is_it_for">
+                                                <li><i class="feather-check"></i>{{ who_is_it_for }}</li>
+                                            </ng-container>
+                                            
+                                        </ul>
+                                    </div>
+                                    <!-- End Feture Box  -->
+                                </div>
+                            </div>
+                            <!-- End Course Feature Box  -->
+
+                            <!-- Start Intructor Area  -->
+                            <div class="rbt-instructor rbt-shadow-box intructor-wrapper mt--30" id="intructor">
+                                <div class="about-author border-0 pb--0 pt--0">
+                                    <div class="section-title mb--30">
+                                        <h4 class="rbt-title-style-3">Instructor</h4>
+                                    </div>
+                                    <div class="media align-items-center">
+                                        <div class="thumbnail">
+                                            <a href="#">
+                                                <img [src]="COURSE_SELECTED.user.avatar" alt="Author Images">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="author-info">
+                                                <h5 class="title">
+                                                    <a class="hover-flip-item-wrapper" href="author.html">{{ COURSE_SELECTED.user.full_name }}</a>
+                                                </h5>
+                                                <span class="b3 subtitle">{{ COURSE_SELECTED.user.profession }}</span>
+                                                <ul class="rbt-meta mb--20 mt--10">
+                                                    <li><i class="fa fa-star color-warning"></i>{{ COURSE_SELECTED.user.num_review }} Reviews 
+                                                        <span class="rbt-badge-5 ml--5">{{ COURSE_SELECTED.user.avg_rating }} Rating</span></li>
+                                                    <li><i class="feather-users"></i>{{ COURSE_SELECTED.user.n_students }} Students</li>
+                                                    <li><a href="#"><i class="feather-video"></i>{{ COURSE_SELECTED.user.count_course }} Courses</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="content">
+                                                <p class="description">{{ COURSE_SELECTED.user.description }}</p>
+
+                                                <ul class="social-icon social-default icon-naked justify-content-start">
+                                                    <li><a href="https://www.facebook.com/">
+                                                            <i class="feather-facebook"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li><a href="https://www.twitter.com">
+                                                            <i class="feather-twitter"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li><a href="https://www.instagram.com/">
+                                                            <i class="feather-instagram"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li><a href="https://www.linkdin.com/">
+                                                            <i class="feather-linkedin"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- End Intructor Area  -->
+
+                        </div>
+                        <!-- End Course Details  -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Course Action Bottom  -->
+<div class="rbt-separator-mid">
+    <div class="container">
+        <hr class="rbt-separator m-0">
+    </div>
+</div>
+<!-- Start Footer aera -->
